@@ -45,3 +45,13 @@ CREATE TABLE music_albums (
 
 -- Games
 
+CREATE TABLE games (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  multiplayer VARCHAR(150) NOT NULL,
+  last_played_at DATE NOT NULL,
+  genre_id INT NULL REFERENCES genre(id) ON DELETE CASCADE,
+  author_id INT NULL REFERENCES author(id) ON DELETE CASCADE,
+  label_id INT NULL REFERENCES label(id) ON DELETE CASCADE,
+  publish_date DATE NOT NULL,
+  archived BOOLEAN NOT NULL
+)
