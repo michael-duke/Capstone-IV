@@ -8,6 +8,10 @@ CREATE TABLE labels (
 );
 
 -- Genres
+CREATE TABLE genres (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+);
 
 -- Books
 CREATE TABLE books (
@@ -21,3 +25,13 @@ CREATE TABLE books (
   archived BOOLEAN NOT NULL
 );
 
+-- Music Albums
+CREATE TABLE music_albums (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  on_spotify BOOLEAN NOT NULL,
+  genre_id INT NULL REFERENCES genre(id) ON DELETE CASCADE,
+  author_id INT NULL REFERENCES author(id) ON DELETE CASCADE,
+  label_id INT NULL REFERENCES label(id) ON DELETE CASCADE,
+  publish_date DATE NOT NULL,
+  archived BOOLEAN NOT NULL
+);
