@@ -1,8 +1,12 @@
 /* Database schema to keep the structure of entire database. */
 
 -- Authors
+CREATE TABLE authors (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  first_name VARCHAR(150) NOT NULL,
+  last_name VARCHAR(150) NOT NULL
+);
 
-/* Create the table here and remove this comment*/
 -- Labels
 CREATE TABLE labels (
   id BIGSERIAL NOT NULL PRIMARY KEY,
@@ -41,4 +45,3 @@ CREATE TABLE music_albums (
 
 -- Games
 
-/* Create the table here and remove this comment*/
