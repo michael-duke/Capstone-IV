@@ -1,5 +1,8 @@
 /* Database schema to keep the structure of entire database. */
 
+-- Authors
+
+/* Create the table here and remove this comment*/
 -- Labels
 CREATE TABLE labels (
   id BIGSERIAL NOT NULL PRIMARY KEY,
@@ -35,3 +38,7 @@ CREATE TABLE music_albums (
   publish_date DATE NOT NULL,
   archived BOOLEAN NOT NULL
 );
+
+-- Games
+
+/* Create the table here and remove this comment*/
