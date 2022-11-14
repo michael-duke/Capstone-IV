@@ -15,50 +15,48 @@ class Options
     end
   end
 
-  private
-  def self.list_all(choice, app)
+  def self.list_all(choice, _app)
     case choice
     when 1
-      print 'Not yet'
-      #app.list_all_books
+      puts 'app.list_all_books'
+      # app.list_all_books
     when 2
-      print 'Not yet'
-      #app.list_all_labels
+      puts 'app.list_all_labels'
+      # app.list_all_labels
     when 3
-      print 'Not yet'
-      #app.list_all_music_albums
+      puts 'app.list_all_music_albums'
+      # app.list_all_music_albums
     when 4
-      print 'Not yet'
-      #app.list_all_genres
+      puts '# app.list_all_genres'
+      # app.list_all_genres
     when 5
-      print 'Not yet'
-      #app.list_all_games
+      puts '# app.list_all_games'
+      # app.list_all_games
     when 6
-      print 'Not yet'
-      #app.list_all_authors
+      puts '# app.list_all_authors'
+      # app.list_all_authors
     end
-
-    puts 'Press Any Key to Continue...'
-    $stdin.getch
-    system('clear') || system('cls')
+    clear_console
   end
 
-  def self.create_item(choice, app)
+  def self.create_item(choice, _app)
     case choice
     when 7
-      print 'Not yet'
-      #app.add_book
+      puts '# app.add_book'
+      # app.add_book
     when 8
-      print 'Not yet'
-      #app.add_music_album
+      puts '# app.add_music_album'
+      # app.add_music_album
     when 9
-      print 'Not yet'
-      #app.add_game
+      puts '# app.add_game'
+      # app.add_game
     end
+    clear_console
+  end
 
+  def self.clear_console
     puts 'Press Any Key to Continue...'
     $stdin.getch
     system('clear') || system('cls')
   end
-
 end
