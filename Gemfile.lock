@@ -39,7 +39,8 @@ GEM
     unicode-display_width (2.3.0)
 
 PLATFORMS
-  x64-mingw-ucrt
+  universal-darwin-21
+  x64-unknown
 
 DEPENDENCIES
   rspec (>= 3.0, < 4.0)
