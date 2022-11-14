@@ -58,7 +58,7 @@ Have `Ruby`, and `Git` installed
 
 - GitHub: [@uisendy](https://github.com/uisendy)
 - Twitter: [@sinieke](https://twitter.com/Sinieke)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/sendyinieke)
+- LinkedIn: [sendyinieke](https://linkedin.com/in/sendyinieke)
 
 ## 🤝 Contributing
 
