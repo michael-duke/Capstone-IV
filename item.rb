@@ -9,8 +9,9 @@ class Item
     @archived = archived
   end
 
-  def add_label(label)
+  def label=(label)
     @label = label
+    label.items << self
   end
 
   def move_to_archive
