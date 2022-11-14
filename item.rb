@@ -9,17 +9,15 @@ class Item
     @archived = archived
   end
 
-  def label=(label)
-    @label = label
-  end
+  attr_writer :label
 
   def move_to_archive
     @archived = true if can_be_archived?
   end
 
   private
+
   def can_be_archived?
     Time.now.year - publish_date.to_i > 10
   end
 end
-
