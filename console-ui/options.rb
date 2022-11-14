@@ -1,4 +1,3 @@
-require_relative '../app'
 require 'io/console'
 
 class Options
@@ -15,14 +14,12 @@ class Options
     end
   end
 
-  def self.list_all(choice, _app)
+  def self.list_all(choice, app)
     case choice
     when 1
-      puts 'app.list_all_books'
-      # app.list_all_books
+      app.list_all_books
     when 2
-      puts 'app.list_all_labels'
-      # app.list_all_labels
+      app.list_all_labels
     when 3
       puts 'app.list_all_music_albums'
       # app.list_all_music_albums
@@ -39,11 +36,10 @@ class Options
     clear_console
   end
 
-  def self.create_item(choice, _app)
+  def self.create_item(choice, app)
     case choice
     when 7
-      puts '# app.add_book'
-      # app.add_book
+      app.add_book
     when 8
       puts '# app.add_music_album'
       # app.add_music_album
@@ -55,7 +51,7 @@ class Options
   end
 
   def self.clear_console
-    puts 'Press Any Key to Continue...'
+    puts "\nPress any key to Continue..."
     $stdin.getch
     system('clear') || system('cls')
   end
