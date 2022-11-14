@@ -17,6 +17,14 @@ class MenuDisplay
   end
 
   def menu
+    puts '
+    _________      _____       ______
+    __  ____/_____ __  /______ ___  /____________ _
+    _  /    _  __ `/  __/  __ `/_  /_  __ \_  __ `/
+    / /___  / /_/ // /_ / /_/ /_  / / /_/ /  /_/ /
+    \____/  \__,_/ \__/ \__,_/ /_/  \____/_\__, /
+                                          /____/
+    '
     puts "\nPlease choose an option by entering a number:"
 
     puts @options
