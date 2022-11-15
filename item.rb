@@ -13,7 +13,7 @@ class Item
     @label = label
     label.items << self
   end
-  
+
   def author=(author)
     @author = author
     author.items << self
