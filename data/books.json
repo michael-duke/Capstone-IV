@@ -1,0 +1,62 @@
+[
+  {
+    "publish_date": "1954/07/29",
+    "cover_state": "good",
+    "publisher": "Arwin & Aragorn",
+    "id": "6b94d189192ad0",
+    "label": {
+      "title": "LOTR",
+      "color": "grey",
+      "id": "4b03b5f7d15cc2"
+    },
+    "author": {
+      "first_name": "J.R.R",
+      "last_name": "Tolkien",
+      "id": "4ba3b5f7de5cc2"
+    },
+    "genre": {
+      "name": "Fantasy",
+      "id": "9fd0bdf1254691"
+    }
+  },
+  {
+    "publish_date": "2010/12/11",
+    "cover_state": "bad",
+    "publisher": "HBO",
+    "id": "e35b2cda589a1e",
+    "label": {
+      "title": "GOT",
+      "color": "black",
+      "id": "00ee3949a1df20"
+    },
+    "author": {
+      "first_name": "George.R.R",
+      "last_name": "Martin",
+      "id": "5ba3b5fcde5cc2"
+    },
+    "genre": {
+      "name": "Fantasy",
+      "id": "3494610b9aca6d"
+    }
+  },
+  {
+    "publish_date": "2021/07/12",
+    "cover_state": "bad",
+    "publisher": "Penguin",
+    "id": "1ac4a0abf8c98f",
+    "label": {
+      "title": "The Songs of Achilles",
+      "color": "Yellow",
+      "id": "a830544bd3a17d"
+    },
+    "author": {
+      "first_name": "Madelaine",
+      "last_name": "Miller",
+      "id": "1c408406ea9a1c"
+    },
+    "genre": {
+      "name": "Fictional/Myth",
+      "id": "16ce9a71ae8a98"
+    }
+  }
+]
