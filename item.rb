@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'date'
 
 class Item
   attr_reader :id, :publish_date, :archived
@@ -26,6 +27,6 @@ class Item
   private
 
   def can_be_archived?
-    Time.now.year - publish_date.to_i > 10
+    Date.today.year - Date.parse(@publish_date).year > 10
   end
 end
