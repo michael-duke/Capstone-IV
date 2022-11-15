@@ -1,0 +1,32 @@
+[
+  {
+    "publish_date": "1954/07/29",
+    "cover_state": "good",
+    "publisher": "Arwin & Aragorn",
+    "id": "6b94d189192ad0",
+    "label": {
+      "title": "LOTR",
+      "color": "grey",
+      "id": "4b03b5f7d15cc2"
+    },
+    "genre": {
+      "name": "Fantasy",
+      "id": "9fd0bdf1254691"
+    }
+  },
+  {
+    "publish_date": "2010/12/11",
+    "cover_state": "bad",
+    "publisher": "HBO",
+    "id": "e35b2cda589a1e",
+    "label": {
+      "title": "GOT",
+      "color": "black",
+      "id": "00ee3949a1df20"
+    },
+    "genre": {
+      "name": "Fantasy",
+      "id": "3494610b9aca6d"
+    }
+  }
+]
