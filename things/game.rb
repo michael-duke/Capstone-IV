@@ -1,3 +1,4 @@
+require 'date'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
@@ -10,6 +11,7 @@ class Game < Item
   private
 
   def can_be_archived?
-    super && (Time.now.year - last_played_at.to_i) > 2
+    super and Date.today.year - Date.parse(@last_played_at).year > 2
   end
 end
+
