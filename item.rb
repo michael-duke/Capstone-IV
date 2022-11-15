@@ -13,6 +13,11 @@ class Item
     @label = label
     label.items << self
   end
+  
+  def author=(author)
+    @author = author
+    author.items << self
+  end
 
   def move_to_archive
     @archived = true if can_be_archived?
