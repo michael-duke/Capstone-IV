@@ -1,7 +1,7 @@
 require './item'
 
 class MusicAlbum < Item
-  attr_accessor :genre
+  attr_accessor :label, :genre
 
   def initialize(on_spotify, publish_date)
     super(publish_date)
