@@ -1,4 +1,5 @@
 require_relative './properties/label'
+require_relative './properties/genre'
 require_relative './things/book'
 
 class App
@@ -7,6 +8,7 @@ class App
   def initialize
     @books = []
     @labels = []
+    @genres = []
   end
 
   def quit_app
@@ -26,8 +28,8 @@ class App
     # print 'Author\'s last name: '
     # last_name = gets.chomp
     # Genre prop
-    # print 'Book\'s genre: '
-    # genre_name = gets.chomp
+    print 'Book\'s genre: '
+    genre_name = gets.chomp
     # Books props
     print 'What\'s the cover state of the book? [good/bad]: '
     cover_state = gets.chomp.downcase
@@ -38,9 +40,13 @@ class App
 
     book = Book.new(publisher, cover_state, published_date)
     label = Label.new(title, color)
+    genre = Genre.new(genre_name)
     label.add_item(book)
+    genre.add_item(book)
+
     @books << book
     @labels << label
+    @genres << genre
   end
 
   def list_all_books
