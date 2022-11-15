@@ -14,4 +14,3 @@ class Game < Item
     super and Date.today.year - Date.parse(@last_played_at).year > 2
   end
 end
-
