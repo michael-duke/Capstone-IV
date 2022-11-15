@@ -1,5 +1,7 @@
 require_relative './properties/label'
 require_relative './properties/genre'
+require_relative './io-files/save_data'
+require_relative './io-files/read_data'
 require_relative './things/book'
 require_relative './things/music_album'
 
@@ -7,13 +9,17 @@ class App
   attr_reader :books, :labels, :music_albums, :genres
 
   def initialize
-    @books = []
-    @labels = []
-    @genres = []
+    @books = ReadData.read_books
+    @games = []
     @music_albums = []
+    @labels = ReadData.read_labels
+    @genres = []
+    @authors = []
   end
 
   def quit_app
+    SaveData.save_books(@books)
+    SaveData.save_labels(@labels)
     puts 'Thank you for using this app! Now exiting...😊'
     exit
   end
