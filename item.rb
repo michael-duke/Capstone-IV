@@ -14,6 +14,11 @@ class Item
     label.items << self
   end
 
+  def genre=(genre)
+    @genre = genre
+    genre.items << self
+  end
+
   def move_to_archive
     @archived = true if can_be_archived?
   end
