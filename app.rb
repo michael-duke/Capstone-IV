@@ -4,7 +4,7 @@ require_relative './things/book'
 require_relative './things/music_album'
 
 class App
-  attr_reader :books, :labels
+  attr_reader :books, :labels, :music_albums, :genres
 
   def initialize
     @books = []
@@ -75,11 +75,11 @@ class App
   end
 
   def add_music_album
-    print 'Is the Music Album on Spotify? [Y/N]: '
-    is_spotify = gets.chomp.downcase
-    on_spotify = true if on_spotify?(is_spotify)
-    on_spotify = false unless on_spotify?(is_spotify)
-    puts on_spotify
+    if on_spotify?
+      on_spotify = true
+    else
+      on_spotify = false
+    end
     print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
     published_date = gets.chomp
     print 'What\'s the label title of the music? '
@@ -92,15 +92,17 @@ class App
     save_music_album(on_spotify, published_date, label_title, color, genre_name)
   end
 
-  def on_spotify?(is_spotify)
+  def on_spotify?
+    print 'Is the Music Album on Spotify? [Y/N]: '
+    is_spotify = gets.chomp.downcase
     case is_spotify
     when 'y'
       true
     when 'n'
       false
     else
-      puts 'Invalid Selection. Please try again!'
-      exit
+      puts 'Invalid Selection. Please enter \'y\', \'Y\' or \'n\', \'N\'!'
+      on_spotify?
     end
   end
 
