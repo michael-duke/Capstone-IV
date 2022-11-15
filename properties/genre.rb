@@ -1,8 +1,11 @@
 require 'securerandom'
 
 class Genre
-  def initialize(name)
-    @id = SecureRandom.hex(5)
+  attr_accessor :name
+  attr_reader :id, :items
+
+  def initialize(name, id: SecureRandom.hex(7))
+    @id = id
     @name = name
     @items = []
   end
