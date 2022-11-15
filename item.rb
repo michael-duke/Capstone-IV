@@ -4,7 +4,7 @@ require 'date'
 class Item
   attr_reader :id, :publish_date, :archived
 
-  def initialize(publish_date, id: SecureRandom.hex(7), archived: false)
+  def initialize(publish_date, id = SecureRandom.hex(7), archived: false)
     @id = id
     @publish_date = publish_date
     @archived = archived
@@ -12,17 +12,17 @@ class Item
 
   def label=(label)
     @label = label
-    label.items << self
+    label.items << self unless label.items.include?(self)
   end
-  
+
   def author=(author)
     @author = author
-    author.items << self
+    author.items << self unless author.items.include?(self)
+  end
 
   def genre=(genre)
     @genre = genre
-    genre.items << self
-
+    genre.items << self unless genre.items.include?(self)
   end
 
   def move_to_archive
