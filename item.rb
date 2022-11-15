@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'date'
 
 class Item
   attr_reader :id, :publish_date, :archived
@@ -13,10 +14,15 @@ class Item
     @label = label
     label.items << self
   end
-
+  
   def author=(author)
     @author = author
     author.items << self
+
+  def genre=(genre)
+    @genre = genre
+    genre.items << self
+
   end
 
   def move_to_archive
@@ -26,6 +32,6 @@ class Item
   private
 
   def can_be_archived?
-    Time.now.year - publish_date.to_i > 10
+    Date.today.year - Date.parse(@publish_date).year > 10
   end
 end
