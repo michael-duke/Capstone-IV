@@ -7,7 +7,7 @@ require_relative './things/book'
 require_relative './things/music_album'
 
 class App
-  attr_reader :books, :labels
+  attr_reader :books, :labels, :music_albums, :genres
 
   def initialize
     @books = ReadData.read_books
@@ -99,57 +99,50 @@ class App
     end
   end
 
-  def add_music_album
-    print 'Is the Music Album on Spotify? [Y/N]: '
-    is_spotify = gets.chomp.downcase
-    on_spotify = true if on_spotify?(is_spotify)
-    on_spotify = false unless on_spotify?(is_spotify)
-    puts on_spotify
-    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
-    published_date = gets.chomp
-    print 'What\'s the label title of the music? '
-    label_title = gets.chomp
-    print 'What\'s the label color / studio of the music? '
-    color = gets.chomp
-    print 'What\'s the genre of the music? '
-    genre_name = gets.chomp
-    puts "\n \n Music Album created successfully \n \n"
-    save_music_album(on_spotify, published_date, label_title, color, genre_name)
+  def list_all_music_albums
+    if @music_albums.empty?
+      puts "The music album list is empty, add some music albums...\u{1F3B9}"
+    else
+      puts "Music albums list, count(#{@music_albums.count})👀 :\n\n"
+      @music_albums.each_with_index do |music_album, index|
+        puts "#{index + 1}) Title: '#{music_album.label.title}, " \
+             "Genre: '#{music_album.genre.name}, " \
+             "Is it on Spotify?: #{music_album.on_spotify}"
+      end
+    end
   end
 
-  def on_spotify?(is_spotify)
+  def add_music_album
+    # music = create_music_album
+    on_spotify = on_spotify?
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    music = MusicAlbum.new(on_spotify, published_date)
+    label = add_label('Music Album')
+    genre = add_genre('Music Album')
+    musician = add_author
+    puts "\n \n Music Album created successfully \n \n"
+    @music_albums << music
+    @labels << label
+    @genres << genre
+    @authors << musician
+
+    label.add_item(music)
+    genre.add_item(music)
+    musician.add_item(music)
+  end
+
+  def on_spotify?
+    print 'Is the Music Album on Spotify? [Y/N]: '
+    is_spotify = gets.chomp.downcase
     case is_spotify
     when 'y'
       true
     when 'n'
       false
     else
-      puts 'Invalid Selection. Please try again!'
-      exit
-    end
-  end
-
-  def save_music_album(on_spotify, published_date, label_title, color, genre_name)
-    music = MusicAlbum.new(on_spotify, published_date)
-    label = Label.new(label_title, color)
-    genre = Genre.new(genre_name)
-
-    @music_albums << music
-    @labels << label
-    @genres << genre
-
-    label.add_item(music)
-    genre.add_item(music)
-  end
-
-  def list_all_music_albums
-    if @music_albums.empty?
-      puts 'The music album list is empty, add some albums...😀'
-    else
-      puts "Music Albums list, count(#{@music_albums.count}) \u{1F3B9} :\n\n"
-      @music_albums.each_with_index do |music, index|
-        puts "#{index + 1}) Title: '#{music.label.title}', Genre: #{music.genre.name}"
-      end
+      puts 'Invalid Selection. Please enter \'y\', \'Y\' or \'n\', \'N\'!'
+      on_spotify?
     end
   end
 

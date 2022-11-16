@@ -48,11 +48,11 @@ Have `Ruby`, and `Git` installed
 - Twitter: [@MikeDuke21](https://twitter.com/MikeDuke21)
 - LinkedIn: [MICHAEL MESFIN](https://linkedin.com/in/https://www.linkedin.com/in/michael-21-duke/)
 
-👤 **Author2**
+👤 **Muyiwa Fawole**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@samlorlah](https://github.com/samlorlah)
+- Twitter: [@twitterhandle](https://twitter.com/samlorlah)
+- LinkedIn: [Oluwamuyiwa Fawole](https://linkedin.com/in/muyiwa-fawole)
 
 👤 **Sendy Inieke**
 
