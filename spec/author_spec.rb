@@ -5,7 +5,7 @@ describe Author do
   before :each do
     @ubisoft_ent = Author.new('Ubisoft', 'Ent')
     @ea_sport = Author.new('EA', 'SPORT')
-    @fifa_2023 = Game.new('2021/1/20', '2022/11/16', multiplayer: true)
+    @fifa2023 = Game.new('2021/1/20', '2022/11/16', multiplayer: true)
     @fight_night = Game.new('2021/12/05', '2022/11/10', multiplayer: true)
   end
 
@@ -29,7 +29,7 @@ describe Author do
     end
     it 'adding an item' do
       expect(@ea_sport.items.count).to eq 0
-      @ea_sport.add_item(@fifa_2023)
+      @ea_sport.add_item(@fifa2023)
       @ubisoft_ent.add_item(@fight_night)
       expect(@ubisoft_ent.items.count).to eq 1
       expect(@ea_sport.items.count).to eq 1
