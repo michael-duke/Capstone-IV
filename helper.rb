@@ -1,13 +1,15 @@
 module Helper
-  def on_spotify?(is_spotify)
+  def on_spotify?
+    print 'Is the Music Album on Spotify? [Y/N]: '
+    is_spotify = gets.chomp.downcase
     case is_spotify
     when 'y'
       true
     when 'n'
       false
     else
-      puts 'Invalid Selection. Please try again!'
-      exit
+      puts 'Invalid Selection. Please enter \'y\', \'Y\' or \'n\', \'N\'!'
+      on_spotify?
     end
   end
 

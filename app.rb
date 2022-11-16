@@ -15,9 +15,9 @@ class App
   def initialize
     @books = ReadData.read_books
     @games = ReadData.read_games
-    @music_albums = []
+    @music_albums = ReadData.read_music_albums
     @labels = ReadData.read_labels
-    @genres = []
+    @genres = ReadData.read_genres
     @authors = ReadData.read_authors
   end
 
@@ -26,7 +26,8 @@ class App
     SaveData.save_games(@games)
     SaveData.save_labels(@labels)
     SaveData.save_authors(@authors)
-
+    SaveData.save_music_albums(@music_albums)
+    SaveData.save_genres(@genres)
     puts 'Thank you for using this app! Now exiting...😊'
     exit
   end

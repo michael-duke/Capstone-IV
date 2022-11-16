@@ -101,4 +101,49 @@ class SaveData
 
     create_file('./data/authors.json', authors_array)
   end
+
+  def self.save_genres(genres)
+    genres_array = []
+    genres.each do |genre|
+      genres_array << {
+        name: genre.name,
+        id: genre.id
+      }
+    end
+    return if genres_array.empty?
+
+    create_file('./data/genres.json', genres_array)
+  end
+
+  def self.save_music_albums(musics)
+    musics_array = []
+    musics.each do |music|
+      musics_array << make_music_json(music)
+    end
+    return if musics_array.empty?
+
+    create_file('./data/music_albums.json', musics_array)
+  end
+
+  def self.make_music_json(music)
+    {
+      publish_date: music.publish_date,
+      on_spotify: music.on_spotify,
+      id: music.id,
+      label: {
+        title: music.label.title,
+        color: music.label.color,
+        id: music.label.id
+      },
+      author: {
+        first_name: music.author.first_name,
+        last_name: music.author.last_name,
+        id: music.author.id
+      },
+      genre: {
+        name: music.genre.name,
+        id: music.genre.id
+      }
+    }
+  end
 end
