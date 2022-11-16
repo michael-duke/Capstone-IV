@@ -18,11 +18,12 @@
 
 ## Project Documentation
 
-- Here is the [link](in progress :smile:) to our Zoom video presentation
+- Here is the [link](https://drive.google.com/file/d/1l42nFPmeVGO7dZ0ss8YNqSFPSIK5iE_9/view?usp=sharing) to our Zoom video presentation :rocket:
 
 ## Console App Screenshot
 
-in progess :smile:
+:smile:
+![screenshot](https://user-images.githubusercontent.com/84629565/202241074-51b2dfa4-2383-44f0-a041-c7bdc0d25c27.png)
 
 ## Getting Started
 
@@ -51,7 +52,7 @@ Have `Ruby`, and `Git` installed
 👤 **Muyiwa Fawole**
 
 - GitHub: [@samlorlah](https://github.com/samlorlah)
-- Twitter: [@twitterhandle](https://twitter.com/samlorlah)
+- Twitter: [@samlorlah](https://twitter.com/samlorlah)
 - LinkedIn: [Oluwamuyiwa Fawole](https://linkedin.com/in/muyiwa-fawole)
 
 👤 **Sendy Inieke**
