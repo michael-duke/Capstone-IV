@@ -4,22 +4,26 @@ require_relative './properties/author'
 require_relative './io-files/save_data'
 require_relative './io-files/read_data'
 require_relative './things/book'
+require_relative './things/game.rb'
 
 class App
   attr_reader :books, :labels
 
   def initialize
     @books = ReadData.read_books
-    @games = []
+    @games = ReadData.read_games
     @music_albums = []
     @labels = ReadData.read_labels
     @genres = []
-    @authors = []
+    @authors = ReadData.read_authors
   end
 
   def quit_app
     SaveData.save_books(@books)
+    SaveData.save_games(@games)
     SaveData.save_labels(@labels)
+    SaveData.save_authors(@authors)
+    
     puts 'Thank you for using this app! Now exiting...😊'
     exit
   end
@@ -72,9 +76,46 @@ class App
     Author.new(first_name, last_name)
   end
 
+  def add_game
+    label = add_label('Game')
+    author = add_author
+    genre = add_genre('Game\'s')
+    # Games props
+    print 'What\'s the last played date? [year/month/day] (e.g 1937/11/12): '
+    last_played_at = gets.chomp
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    multiplayer = multiplayer?
+    game = Game.new(published_date, last_played_at, multiplayer: multiplayer)
+    label.add_item(game)
+    genre.add_item(game)
+    author.add_item(game)
+
+    @games << game
+    @labels << label
+    @genres << genre
+    @authors << author
+  end
+
+  def multiplayer?
+    print 'Is it a Multiplayer Game? [Y/N]:'
+    multiplayer = gets.chomp.downcase
+
+    case multiplayer
+    when 'n'
+      false
+    when 'y'
+      true
+    else
+      puts 'Incorrect choice, kindly enter \'y\', \'Y\' or \'n\', \'N\' 😀'
+      multiplayer?
+    end
+  end
+
+
   def list_all_books
     if @books.empty?
-      puts 'The book list is empty, add some books...😀'
+      puts 'The Books list is empty, add some books...😀'
     else
       puts "Books list, count(#{@books.count})📚 :\n\n"
       @books.each_with_index do |book, index|
@@ -96,4 +137,5 @@ class App
       end
     end
   end
+
 end
