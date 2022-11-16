@@ -94,6 +94,19 @@ class SaveData
     }
   end
 
-  
+  def self.save_authors(authors)
+    authors_array = []
+    authors.each do |author|
+      authors_array << {
+        first_name: author.first_name,
+        last_name: author.last_name,
+        id: author.id
+      }
+    end
+    return if authors_array.empty?
+
+    check_file_exists('authors')
+    File.write('./data/authors.json', JSON.pretty_generate(authors_array))
+  end
 
 end
