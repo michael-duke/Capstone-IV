@@ -2,13 +2,10 @@ require 'json'
 require 'fileutils'
 
 class SaveData
-  def self.check_file_exists(filename)
+  def self.create_file(path, items)
     FileUtils.mkdir_p('./data')
-    FileUtils.touch('./data/labels.json') if !File.exist?('./data/labels.json') && filename == 'labels'
-    FileUtils.touch('./data/books.json') if !File.exist?('./data/books.json') && filename == 'books'
-    FileUtils.touch('./data/genres.json') if !File.exist?('./data/genres.json') && filename == 'genres'
-    FileUtils.touch('./data/games.json') if !File.exist?('./data/games.json') && filename == 'games'
-    FileUtils.touch('./data/authors.json') if !File.exist?('./data/authors.json') && filename == 'authors'
+    FileUtils.touch(path) unless File.exist?(path)
+    File.write(path, JSON.pretty_generate(items))
   end
 
   def self.save_books(books)
@@ -18,8 +15,7 @@ class SaveData
     end
     return if books_array.empty?
 
-    check_file_exists('books')
-    File.write('./data/books.json', JSON.pretty_generate(books_array))
+    create_file('./data/books.json', books_array)
   end
 
   def self.make_book_json(book)
@@ -56,8 +52,7 @@ class SaveData
     end
     return if labels_array.empty?
 
-    check_file_exists('labels')
-    File.write('./data/labels.json', JSON.pretty_generate(labels_array))
+    create_file('./data/labels.json', labels_array)
   end
 
   def self.save_games(games)
@@ -67,8 +62,7 @@ class SaveData
     end
     return if games_array.empty?
 
-    check_file_exists('games')
-    File.write('./data/games.json', JSON.pretty_generate(games_array))
+    create_file('./data/games.json', games_array)
   end
 
   def self.make_game_json(game)
@@ -87,7 +81,7 @@ class SaveData
       genre: {
         name: game.genre.name,
         id: game.genre.id
-      }, 
+      },
       publish_date: game.publish_date,
       last_played_at: game.last_played_at,
       multiplayer: game.multiplayer
@@ -105,8 +99,6 @@ class SaveData
     end
     return if authors_array.empty?
 
-    check_file_exists('authors')
-    File.write('./data/authors.json', JSON.pretty_generate(authors_array))
+    create_file('./data/authors.json', authors_array)
   end
-
 end
