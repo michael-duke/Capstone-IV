@@ -28,25 +28,25 @@ describe Book do
       expect(@book3).not_to respond_to(:can_be_archived?)
     end
     it 'can use move_to_archive method' do
-      expect(@book1).to respond_to(:move_to_archive?)
-      expect(@book2).to respond_to(:move_to_archive?)
-      expect(@book3).to respond_to(:move_to_archive?)
+      expect(@book1).to respond_to(:move_to_archive)
+      expect(@book2).to respond_to(:move_to_archive)
+      expect(@book3).to respond_to(:move_to_archive)
     end
     it 'should not be archived for @book1; publish_date diff < 10 and cover_state=good' do
       archived = @book1.archived
-      @book1.move_to_archive?
+      @book1.move_to_archive
       expect(@book1.archived).to eql archived
       expect(@book2.archived).to be_falsey
     end
     it 'should not be archived for @book2 to true; cover_state is bad' do
       archived = @book2.archived
-      @book2.move_to_archive?
+      @book2.move_to_archive
       expect(@book2.archived).not_to eql archived
       expect(@book2.archived).to be_truthy
     end
     it 'should not be archived for @book2 to true; cover_state is good but publish_date diff > 10' do
       archived = @book3.archived
-      @book3.move_to_archive?
+      @book3.move_to_archive
       expect(@book3.archived).not_to eql archived
       expect(@book3.archived).to be_truthy
     end

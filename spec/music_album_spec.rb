@@ -22,25 +22,25 @@ describe MusicAlbum do
 
   context 'When archiving a MusicAlbum' do
     it 'can use move_to_archive method' do
-      expect(@music1).to respond_to(:move_to_archive?)
-      expect(@music2).to respond_to(:move_to_archive?)
-      expect(@music3).to respond_to(:move_to_archive?)
+      expect(@music1).to respond_to(:move_to_archive)
+      expect(@music2).to respond_to(:move_to_archive)
+      expect(@music3).to respond_to(:move_to_archive)
     end
     it 'should not be archived for @music1; publish_date diff < 10' do
       archived = @music1.archived
-      @music1.move_to_archive?
+      @music1.move_to_archive
       expect(@music1.archived).to eql archived
       expect(@music2.archived).to be_falsey
     end
     it 'should not be archived for @music2 to false; publish_date diff < 10 and on_spotify is false' do
       archived = @music2.archived
-      @music2.move_to_archive?
+      @music2.move_to_archive
       expect(@music2.archived).to eql archived
       expect(@music2.archived).to be_falsey
     end
     it 'should not be archived for @music2 to true; on_spotify is true and publish_date diff > 10' do
       archived = @music3.archived
-      @music3.move_to_archive?
+      @music3.move_to_archive
       expect(@music3.archived).not_to eql archived
       expect(@music3.archived).to be_truthy
     end

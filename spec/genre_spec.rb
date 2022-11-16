@@ -16,7 +16,7 @@ describe Genre do
   end
 
   it 'should add Item to Genre and test if the genre belongs to the item' do
-    @music.genre=(@genre)
+    @music.genre = (@genre)
     expect(@music.genre).to be_instance_of(Genre)
   end
 end
