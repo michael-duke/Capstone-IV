@@ -1,5 +1,6 @@
 require_relative './properties/label'
 require_relative './properties/genre'
+require_relative './properties/author'
 require_relative './io-files/save_data'
 require_relative './io-files/read_data'
 require_relative './things/book'
@@ -75,27 +76,39 @@ class App
     else
       puts "Labels list, count(#{@labels.count})🏷️ :\n\n"
       @labels.each_with_index do |label, index|
-        puts "#{index + 1}) Title: '#{label.title}', Color: #{label.color}"
+        puts "#{index + 1}) Title: '#{label.title}', Color / Studio: #{label.color}"
+      end
+    end
+  end
+
+  def list_all_music_albums
+    if @music_albums.empty?
+      puts "The music album list is empty, add some music albums...\u{1F3B9}"
+    else
+      puts "Music albums list, count(#{@music_albums.count})👀 :\n\n"
+      @music_albums.each_with_index do |music_album, index|
+        puts "#{index + 1}) Title: '#{music_album.label.title}, " \
+             "Genre: '#{music_album.genre.name}, " \
+             "Is it on Spotify?: #{music_album.on_spotify}"
       end
     end
   end
 
   def add_music_album
-    if on_spotify?
-      on_spotify = true
-    else
-      on_spotify = false
-    end
-    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
-    published_date = gets.chomp
-    print 'What\'s the label title of the music? '
-    label_title = gets.chomp
-    print 'What\'s the label color / studio of the music? '
-    color = gets.chomp
-    print 'What\'s the genre of the music? '
-    genre_name = gets.chomp
+    music = create_music_album
+    label = create_music_label
+    genre = create_music_genre
+    musician = create_musician
     puts "\n \n Music Album created successfully \n \n"
-    save_music_album(on_spotify, published_date, label_title, color, genre_name)
+    @music_albums << music
+    @labels << label
+    @genres << genre
+    @authors << musician
+
+    label.add_item(music)
+    genre.add_item(music)
+    musician.add_item(music)
+    # save_music_album(label_title, color, genre_name, musician_firstname, musician_lastname)
   end
 
   def on_spotify?
@@ -112,20 +125,54 @@ class App
     end
   end
 
-  def save_music_album(on_spotify, published_date, label_title, color, genre_name)
-    music = MusicAlbum.new(on_spotify, published_date)
-    label = Label.new(label_title, color)
-    genre = Genre.new(genre_name)
-
-    @music_albums << music
-    @labels << label
-    @genres << genre
-
-    label.add_item(music)
-    genre.add_item(music)
+  def create_music_album
+    on_spotify = on_spotify?
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    MusicAlbum.new(on_spotify, published_date)
   end
 
-  def list_all_music_albums
+  def create_music_label
+    print 'What\'s the music title of the music? '
+    label_title = gets.chomp
+    print 'Where\'s the studio of the music label? '
+    color = gets.chomp
+    Label.new(label_title, color)
+  end
+
+  def create_music_genre
+    print 'What\'s the genre of the music? '
+    genre_name = gets.chomp
+    Genre.new(genre_name)
+  end
+
+  def create_musician
+    print 'What is the firstname of the musician? '
+    musician_firstname = gets.chomp
+    print 'What is the lastname of the musician? '
+    musician_lastname = gets.chomp
+    Author.new(musician_firstname, musician_lastname)
+  end
+
+  def
+  # def save_music_album(on_spotify, published_date, label_title, color, genre_name, musician_firstname,
+  #                      musician_lastname)
+  #   music = MusicAlbum.new(on_spotify, published_date)
+  #   label = Label.new(label_title, color)
+  #   genre = Genre.new(genre_name)
+  #   musician = Author.new(musician_firstname, musician_lastname)
+
+  #   @music_albums << music
+  #   @labels << label
+  #   @genres << genre
+  #   @authors << musician
+
+  #   label.add_item(music)
+  #   genre.add_item(music)
+  #   musician.add_item(music)
+  # end
+
+  def(_list_all_music_albums)
     if @music_albums.empty?
       puts 'The music album list is empty, add some albums...😀'
     else
