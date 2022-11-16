@@ -58,5 +58,25 @@
       "name": "Fictional/Myth",
       "id": "16ce9a71ae8a98"
     }
+  },
+  {
+    "publish_date": "1989/12/01",
+    "cover_state": "good",
+    "publisher": "EU Publisher",
+    "id": "b1b1e46e60bc6c",
+    "label": {
+      "title": "The African European",
+      "color": "Cream",
+      "id": "662a112535f7fa"
+    },
+    "author": {
+      "first_name": "Sendy",
+      "last_name": "Michale",
+      "id": "5aae010964813b"
+    },
+    "genre": {
+      "name": "History",
+      "id": "a6ec7668be0cd9"
+    }
   }
 ]
