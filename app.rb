@@ -94,7 +94,7 @@ class App
     else
       puts "Labels list, count(#{@labels.count})🏷️ :\n\n"
       @labels.each_with_index do |label, index|
-        puts "#{index + 1}) Title: '#{label.title}', Color / Studio: #{label.color}"
+        puts "#{index + 1}) Title: '#{label.title}', Color: #{label.color}"
       end
     end
   end
@@ -113,10 +113,14 @@ class App
   end
 
   def add_music_album
-    music = create_music_album
-    label = create_music_label
-    genre = create_music_genre
-    musician = create_musician
+    # music = create_music_album
+    on_spotify = on_spotify?
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    music = MusicAlbum.new(on_spotify, published_date)
+    label = add_label('Music Album')
+    genre = add_genre('Music Album')
+    musician = add_author
     puts "\n \n Music Album created successfully \n \n"
     @music_albums << music
     @labels << label
@@ -126,7 +130,6 @@ class App
     label.add_item(music)
     genre.add_item(music)
     musician.add_item(music)
-    # save_music_album(label_title, color, genre_name, musician_firstname, musician_lastname)
   end
 
   def on_spotify?
@@ -140,64 +143,6 @@ class App
     else
       puts 'Invalid Selection. Please enter \'y\', \'Y\' or \'n\', \'N\'!'
       on_spotify?
-    end
-  end
-
-  def create_music_album
-    on_spotify = on_spotify?
-    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
-    published_date = gets.chomp
-    MusicAlbum.new(on_spotify, published_date)
-  end
-
-  def create_music_label
-    print 'What\'s the music title of the music? '
-    label_title = gets.chomp
-    print 'Where\'s the studio of the music label? '
-    color = gets.chomp
-    Label.new(label_title, color)
-  end
-
-  def create_music_genre
-    print 'What\'s the genre of the music? '
-    genre_name = gets.chomp
-    Genre.new(genre_name)
-  end
-
-  def create_musician
-    print 'What is the firstname of the musician? '
-    musician_firstname = gets.chomp
-    print 'What is the lastname of the musician? '
-    musician_lastname = gets.chomp
-    Author.new(musician_firstname, musician_lastname)
-  end
-
-  def
-  # def save_music_album(on_spotify, published_date, label_title, color, genre_name, musician_firstname,
-  #                      musician_lastname)
-  #   music = MusicAlbum.new(on_spotify, published_date)
-  #   label = Label.new(label_title, color)
-  #   genre = Genre.new(genre_name)
-  #   musician = Author.new(musician_firstname, musician_lastname)
-
-  #   @music_albums << music
-  #   @labels << label
-  #   @genres << genre
-  #   @authors << musician
-
-  #   label.add_item(music)
-  #   genre.add_item(music)
-  #   musician.add_item(music)
-  # end
-
-  def(_list_all_music_albums)
-    if @music_albums.empty?
-      puts 'The music album list is empty, add some albums...😀'
-    else
-      puts "Music Albums list, count(#{@music_albums.count}) \u{1F3B9} :\n\n"
-      @music_albums.each_with_index do |music, index|
-        puts "#{index + 1}) Title: '#{music.label.title}', Genre: #{music.genre.name}"
-      end
     end
   end
 
