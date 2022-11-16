@@ -41,7 +41,7 @@ describe Game do
     end
 
     it 'Last_played less than 2years although published date is greater than 10 yrs shoudld be _not_be_archived_ ' do
-      @mortal_combat_1.move_to_archive
+      @mortal_combat_one.move_to_archive
       expect(@mortal_combat_one.archived).to be false
     end
   end
