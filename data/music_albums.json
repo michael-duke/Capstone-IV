@@ -1,0 +1,21 @@
+[
+  {
+    "publish_date": "2001/11/12",
+    "on_spotify": true,
+    "id": "7b7240c07c496a",
+    "label": {
+      "title": "Get Rich or Die",
+      "color": "white",
+      "id": "6b6e964586f926"
+    },
+    "author": {
+      "first_name": "50",
+      "last_name": "cent",
+      "id": "a22e769523b7c9"
+    },
+    "genre": {
+      "name": "Rap/Hip hop",
+      "id": "ef974f4ab7ebd7"
+    }
+  }
+]
