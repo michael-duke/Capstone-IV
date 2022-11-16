@@ -10,7 +10,7 @@ require_relative './helper'
 
 class App
   include Helper
-  attr_reader :books, :labels, :music_albums, :genres
+  attr_reader :books, :music_albums, :games, :labels, :genres, :authors
 
   def initialize
     @books = ReadData.read_books
