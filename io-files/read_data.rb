@@ -33,4 +33,40 @@ class ReadData
     file.close
     labels
   end
+
+  def self.read_games
+    games = []
+    return games unless File.exist?('./data/games.json')
+
+    file = File.open('./data/games.json')
+    data = JSON.parse(file.read)
+    data.each do |game_item|
+      game = Game.new(game_item['publish_date'], game_item['id'], game_item['last_played_at'],
+                      multiplayer: game_item['multiplayer'])
+      label = Label.new(game_item['label']['title'], game_item['label']['color'], id: game_item['label']['id'])
+      genre = Genre.new(game_item['genre']['name'], id: game_item['genre']['id'])
+      author = Author.new(game_item['author']['first_name'], game_item['author']['last_name'],
+                          id: game_item['author']['id'])
+      game.label = label
+      game.genre = genre
+      game.author = author
+      games << game
+    end
+    file.close
+    games
+  end
+
+  def self.read_authors
+    authors = []
+    return authors unless File.exist?('./data/authors.json')
+
+    file = File.open('./data/authors.json')
+    data = JSON.parse(file.read)
+    data.each do |author|
+      author = Author.new(author['first_name'], author['last_name'], id: author['id'])
+      authors << author
+    end
+    file.close
+    authors
+  end
 end

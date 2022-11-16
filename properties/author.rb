@@ -11,6 +11,17 @@ class Author
     @items = []
   end
 
+  def self.list_all(authors)
+    if authors.empty?
+      puts 'The Items list is empty, add some items...😀'
+    else
+      puts "Authors list, count(#{authors.count})👤 :\n\n"
+      authors.each_with_index do |author, index|
+        puts "#{index + 1}) Author: #{author.first_name}, #{author.last_name}"
+      end
+    end
+  end
+
   def add_item(item)
     @items << item
     item.author = self

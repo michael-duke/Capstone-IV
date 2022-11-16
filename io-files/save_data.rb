@@ -2,11 +2,10 @@ require 'json'
 require 'fileutils'
 
 class SaveData
-  def self.check_file_exists(filename)
+  def self.create_file(path, items)
     FileUtils.mkdir_p('./data')
-    FileUtils.touch('./data/labels.json') if !File.exist?('./data/labels.json') && filename == 'labels'
-    FileUtils.touch('./data/books.json') if !File.exist?('./data/books.json') && filename == 'books'
-    FileUtils.touch('./data/genres.json') if !File.exist?('./data/genres.json') && filename == 'genres'
+    FileUtils.touch(path) unless File.exist?(path)
+    File.write(path, JSON.pretty_generate(items))
   end
 
   def self.save_books(books)
@@ -16,8 +15,7 @@ class SaveData
     end
     return if books_array.empty?
 
-    check_file_exists('books')
-    File.write('./data/books.json', JSON.pretty_generate(books_array))
+    create_file('./data/books.json', books_array)
   end
 
   def self.make_book_json(book)
@@ -54,7 +52,53 @@ class SaveData
     end
     return if labels_array.empty?
 
-    check_file_exists('labels')
-    File.write('./data/labels.json', JSON.pretty_generate(labels_array))
+    create_file('./data/labels.json', labels_array)
+  end
+
+  def self.save_games(games)
+    games_array = []
+    games.each do |game|
+      games_array << make_game_json(game)
+    end
+    return if games_array.empty?
+
+    create_file('./data/games.json', games_array)
+  end
+
+  def self.make_game_json(game)
+    {
+      id: game.id,
+      label: {
+        title: game.label.title,
+        color: game.label.color,
+        id: game.label.id
+      },
+      author: {
+        first_name: game.author.first_name,
+        last_name: game.author.last_name,
+        id: game.author.id
+      },
+      genre: {
+        name: game.genre.name,
+        id: game.genre.id
+      },
+      publish_date: game.publish_date,
+      last_played_at: game.last_played_at,
+      multiplayer: game.multiplayer
+    }
+  end
+
+  def self.save_authors(authors)
+    authors_array = []
+    authors.each do |author|
+      authors_array << {
+        first_name: author.first_name,
+        last_name: author.last_name,
+        id: author.id
+      }
+    end
+    return if authors_array.empty?
+
+    create_file('./data/authors.json', authors_array)
   end
 end
