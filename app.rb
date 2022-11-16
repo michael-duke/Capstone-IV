@@ -10,7 +10,7 @@ require_relative './helper'
 
 class App
   include Helper
-  attr_reader :books, :labels
+  attr_reader :books, :labels, :music_albums, :genres
 
   def initialize
     @books = ReadData.read_books
@@ -112,30 +112,30 @@ class App
     Game.list_all(@games)
   end
 
-  def add_music_album
-    print 'Is the Music Album on Spotify? [Y/N]: '
-    is_spotify = gets.chomp.downcase
-    on_spotify = true if on_spotify?(is_spotify)
-    on_spotify = false unless on_spotify?(is_spotify)
-    puts on_spotify
-    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
-    published_date = gets.chomp
-    print 'What\'s the label title of the music? '
-    label_title = gets.chomp
-    print 'What\'s the label color / studio of the music? '
-    color = gets.chomp
-    print 'What\'s the genre of the music? '
-    genre_name = gets.chomp
-    puts "\n \n Music Album created successfully \n \n"
-    save_music_album(on_spotify, published_date, label_title, color, genre_name)
-  end
-
   def list_all_music_albums
     MusicAlbum.list_all(@music_albums)
   end
 
   def list_all_authors
     Author.list_all(@authors)
+
+  def add_music_album
+    on_spotify = on_spotify?
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    music = MusicAlbum.new(on_spotify, published_date)
+    label = add_label('Music Album')
+    genre = add_genre('Music Album')
+    musician = add_author
+    puts "\n \n Music Album created successfully \n \n"
+    @music_albums << music
+    @labels << label
+    @genres << genre
+    @authors << musician
+
+    label.add_item(music)
+    genre.add_item(music)
+    musician.add_item(music)
   end
 
   def list_all_genres
