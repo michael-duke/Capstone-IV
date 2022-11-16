@@ -69,4 +69,39 @@ class ReadData
     file.close
     authors
   end
+
+  def self.read_music_albums
+    music_albums = []
+    return music_albums unless File.exist?('./data/music_albums.json')
+
+    file = File.open('./data/music_albums.json')
+    data = JSON.parse(file.read)
+    data.each do |music_item|
+      music = MusicAlbum.new(music_item['on_spotify'], music_item['publish_date'], music_item['id'])
+      label = Label.new(music_item['label']['title'], music_item['label']['color'], id: music_item['label']['id'])
+      genre = Genre.new(music_item['genre']['name'], id: music_item['genre']['id'])
+      author = Author.new(music_item['author']['first_name'], music_item['author']['last_name'],
+                          id: music_item['author']['id'])
+      music.label = label
+      music.genre = genre
+      music.author = author
+      music_albums << music
+    end
+    file.close
+    music_albums
+  end
+
+  def self.read_genres
+    genres = []
+    return genres unless File.exist?('./data/genres.json')
+
+    file = File.open('./data/genres.json')
+    data = JSON.parse(file.read)
+    data.each do |genre|
+      genre = Genre.new(genre['name'], id: genre['id'])
+      genres << genre
+    end
+    file.close
+    genres
+  end
 end
