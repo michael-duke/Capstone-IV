@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Genre do
   before :each do
     @genre = Genre.new('Comedy')
-    @item = Item.new('1999/10/23')
+    @music = MusicAlbum.new(true, '1990/12/15')
   end
 
   it 'should test that Genre name is Comedy' do
@@ -11,12 +11,12 @@ describe Genre do
   end
 
   it 'should add Item to Genre and test if item is in genre' do
-    @genre.add_item(@item)
-    expect(@genre.items[0]).to be(@item)
+    @genre.add_item(@music)
+    expect(@genre.items[0]).to be(@music)
   end
 
   it 'should add Item to Genre and test if the genre belongs to the item' do
-    @item.genre = (@genre)
-    expect(@genre.items[0]).to be(@item)
+    @music.genre=(@genre)
+    expect(@music.genre).to be_instance_of(Genre)
   end
 end
