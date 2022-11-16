@@ -5,6 +5,7 @@ require_relative './io-files/save_data'
 require_relative './io-files/read_data'
 require_relative './things/book'
 require_relative './things/game'
+require_relative './things/music_album'
 
 class App
   attr_reader :books, :labels
@@ -137,6 +138,7 @@ class App
     end
   end
 
+
   def list_all_games
     if @games.empty?
       puts 'The Games list is empty, add some games...😀'
@@ -147,9 +149,61 @@ class App
              "   Author: #{game.author.first_name} #{game.author.last_name} ",
              "   Last Played: #{game.last_played_at}",
              "   Multiplayer: #{game.multiplayer ? 'Yes' : 'No'}"
+
+  def add_music_album
+    print 'Is the Music Album on Spotify? [Y/N]: '
+    is_spotify = gets.chomp.downcase
+    on_spotify = true if on_spotify?(is_spotify)
+    on_spotify = false unless on_spotify?(is_spotify)
+    puts on_spotify
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    print 'What\'s the label title of the music? '
+    label_title = gets.chomp
+    print 'What\'s the label color / studio of the music? '
+    color = gets.chomp
+    print 'What\'s the genre of the music? '
+    genre_name = gets.chomp
+    puts "\n \n Music Album created successfully \n \n"
+    save_music_album(on_spotify, published_date, label_title, color, genre_name)
+  end
+
+  def on_spotify?(is_spotify)
+    case is_spotify
+    when 'y'
+      true
+    when 'n'
+      false
+    else
+      puts 'Invalid Selection. Please try again!'
+      exit
+    end
+  end
+
+  def save_music_album(on_spotify, published_date, label_title, color, genre_name)
+    music = MusicAlbum.new(on_spotify, published_date)
+    label = Label.new(label_title, color)
+    genre = Genre.new(genre_name)
+
+    @music_albums << music
+    @labels << label
+    @genres << genre
+
+    label.add_item(music)
+    genre.add_item(music)
+  end
+
+  def list_all_music_albums
+    if @music_albums.empty?
+      puts 'The music album list is empty, add some albums...😀'
+    else
+      puts "Music Albums list, count(#{@music_albums.count}) \u{1F3B9} :\n\n"
+      @music_albums.each_with_index do |music, index|
+        puts "#{index + 1}) Title: '#{music.label.title}', Genre: #{music.genre.name}"
       end
     end
   end
+
 
   def list_all_authors
     if @authors.empty?
@@ -158,6 +212,14 @@ class App
       puts "Authors list, count(#{@authors.count})👤 :\n\n"
       @authors.each_with_index do |author, index|
         puts "#{index + 1}) Author: #{author.first_name}, #{author.last_name}"
+
+  def list_all_genres
+    if @genres.empty?
+      puts 'The genre list is empty, add some genres...😀'
+    else
+      puts "Genres list, count(#{@genres.count}) :\n\n"
+      @genres.each_with_index do |genre, index|
+        puts "#{index + 1}) Name: '#{genre.name}'"
       end
     end
   end
