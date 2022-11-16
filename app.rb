@@ -118,6 +118,7 @@ class App
 
   def list_all_authors
     Author.list_all(@authors)
+  end
 
   def add_music_album
     on_spotify = on_spotify?
