@@ -55,5 +55,17 @@ class ReadData
     games
   end
 
-  
+  def self.read_authors
+    authors = []
+    return authors unless File.exist?('./data/authors.json')
+
+    file = File.open('./data/authors.json')
+    data = JSON.parse(file.read)
+    data.each do |author|
+      author = Author.new(author['first_name'], author['last_name'], id: author['id'])
+      authors << author
+    end
+    file.close
+    authors
+  end
 end
