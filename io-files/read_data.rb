@@ -41,7 +41,8 @@ class ReadData
     file = File.open('./data/games.json')
     data = JSON.parse(file.read)
     data.each do |game_item|
-      game = Game.new(game_item['publish_date'],game_item['id'], game_item['last_played_at'], multiplayer: game_item['multiplayer'])
+      game = Game.new(game_item['publish_date'], game_item['id'], game_item['last_played_at'],
+                      multiplayer: game_item['multiplayer'])
       label = Label.new(game_item['label']['title'], game_item['label']['color'], id: game_item['label']['id'])
       genre = Genre.new(game_item['genre']['name'], id: game_item['genre']['id'])
       author = Author.new(game_item['author']['first_name'], game_item['author']['last_name'],

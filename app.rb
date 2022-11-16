@@ -4,7 +4,7 @@ require_relative './properties/author'
 require_relative './io-files/save_data'
 require_relative './io-files/read_data'
 require_relative './things/book'
-require_relative './things/game.rb'
+require_relative './things/game'
 
 class App
   attr_reader :books, :labels
@@ -23,7 +23,7 @@ class App
     SaveData.save_games(@games)
     SaveData.save_labels(@labels)
     SaveData.save_authors(@authors)
-    
+
     puts 'Thank you for using this app! Now exiting...😊'
     exit
   end
@@ -112,7 +112,6 @@ class App
     end
   end
 
-
   def list_all_books
     if @books.empty?
       puts 'The Books list is empty, add some books...😀'
@@ -137,7 +136,8 @@ class App
       end
     end
   end
-    def list_all_games
+
+  def list_all_games
     if @games.empty?
       puts 'The Games list is empty, add some games...😀'
     else
@@ -147,7 +147,6 @@ class App
              "   Author: #{game.author.first_name} #{game.author.last_name} ",
              "   Last Played: #{game.last_played_at}",
              "   Multiplayer: #{game.multiplayer ? 'Yes' : 'No'}"
-
       end
     end
   end
@@ -162,5 +161,4 @@ class App
       end
     end
   end
-
 end

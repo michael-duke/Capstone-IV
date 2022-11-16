@@ -1,6 +1,5 @@
 require 'date'
-require_relative '../item.rb'
-
+require_relative '../item'
 
 class Game < Item
   attr_accessor :multiplayer, :last_played_at, :label, :author, :genre
