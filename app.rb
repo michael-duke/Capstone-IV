@@ -137,7 +137,7 @@ class App
       end
     end
   end
-  def list_all_games
+    def list_all_games
     if @games.empty?
       puts 'The Games list is empty, add some games...😀'
     else
@@ -152,6 +152,15 @@ class App
     end
   end
 
-  
+  def list_all_authors
+    if @authors.empty?
+      puts 'The Items list is empty, add some items...😀'
+    else
+      puts "Authors list, count(#{@authors.count})👤 :\n\n"
+      @authors.each_with_index do |author, index|
+        puts "#{index + 1}) Author: #{author.first_name}, #{author.last_name}"
+      end
+    end
+  end
 
 end
