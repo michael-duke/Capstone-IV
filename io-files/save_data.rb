@@ -7,6 +7,8 @@ class SaveData
     FileUtils.touch('./data/labels.json') if !File.exist?('./data/labels.json') && filename == 'labels'
     FileUtils.touch('./data/books.json') if !File.exist?('./data/books.json') && filename == 'books'
     FileUtils.touch('./data/genres.json') if !File.exist?('./data/genres.json') && filename == 'genres'
+    FileUtils.touch('./data/games.json') if !File.exist?('./data/games.json') && filename == 'games'
+    FileUtils.touch('./data/authors.json') if !File.exist?('./data/authors.json') && filename == 'authors'
   end
 
   def self.save_books(books)
@@ -57,4 +59,41 @@ class SaveData
     check_file_exists('labels')
     File.write('./data/labels.json', JSON.pretty_generate(labels_array))
   end
+
+  def self.save_games(games)
+    games_array = []
+    games.each do |game|
+      games_array << make_game_json(game)
+    end
+    return if games_array.empty?
+
+    check_file_exists('games')
+    File.write('./data/games.json', JSON.pretty_generate(games_array))
+  end
+
+  def self.make_game_json(game)
+    {
+      id: game.id,
+      label: {
+        title: game.label.title,
+        color: game.label.color,
+        id: game.label.id
+      },
+      author: {
+        first_name: game.author.first_name,
+        last_name: game.author.last_name,
+        id: game.author.id
+      },
+      genre: {
+        name: game.genre.name,
+        id: game.genre.id
+      }, 
+      publish_date: game.publish_date,
+      last_played_at: game.last_played_at,
+      multiplayer: game.multiplayer
+    }
+  end
+
+  
+
 end
