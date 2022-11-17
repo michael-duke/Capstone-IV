@@ -1,0 +1,42 @@
+[
+  {
+    "id": "a121f64e1376c9",
+    "label": {
+      "title": "WWE 2022",
+      "color": "red",
+      "id": "7a55791f690d59"
+    },
+    "author": {
+      "first_name": "Smark",
+      "last_name": "Down",
+      "id": "95bb68dd71cba6"
+    },
+    "genre": {
+      "name": "Fight",
+      "id": "b2da570a0ceded"
+    },
+    "publish_date": "2021/9/12",
+    "last_played_at": "2022/11/16",
+    "multiplayer": true
+  },
+  {
+    "id": "489651efe67edc",
+    "label": {
+      "title": "Figth Night",
+      "color": "Blue and Red",
+      "id": "e67fab49e5c8ea"
+    },
+    "author": {
+      "first_name": "EA",
+      "last_name": "Sport",
+      "id": "7e29d301fe7db9"
+    },
+    "genre": {
+      "name": "Sport",
+      "id": "a32b4507db4059"
+    },
+    "publish_date": "2021/09/15",
+    "last_played_at": "2022/11/16",
+    "multiplayer": true
+  }
+]
