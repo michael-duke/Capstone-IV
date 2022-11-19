@@ -32,29 +32,6 @@ class App
     exit
   end
 
-  def add_book
-    label = add_label('Book')
-    author = add_author
-    genre = add_genre('Book\'s')
-    # Books props
-    print 'What\'s the cover state of the book? [good/bad]: '
-    cover_state = gets.chomp.downcase
-    print 'Who is the publisher? '
-    publisher = gets.chomp
-    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
-    published_date = gets.chomp
-    book = Book.new(publisher, cover_state, published_date)
-    label.add_item(book)
-    genre.add_item(book)
-    author.add_item(book)
-
-    @books << book
-    @labels << label
-    @genres << genre
-    @authors << author
-    puts "\nThe book '#{label.title}' by #{author.first_name} #{author.last_name} was created successfully! 👍"
-  end
-
   def add_label(item_type)
     # Label props
     print "Title of the #{item_type}: "
@@ -80,6 +57,29 @@ class App
     Author.new(first_name, last_name)
   end
 
+  def add_book
+    label = add_label('Book')
+    author = add_author
+    genre = add_genre('Book\'s')
+    # Books props
+    print 'What\'s the cover state of the book? [good/bad]: '
+    cover_state = gets.chomp.downcase
+    print 'Who is the publisher? '
+    publisher = gets.chomp
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    book = Book.new(publisher, cover_state, published_date)
+    label.add_item(book)
+    genre.add_item(book)
+    author.add_item(book)
+
+    @books << book
+    @labels << label
+    @genres << genre
+    @authors << author
+    puts "\n✅ The book '#{label.title}' by #{author.first_name} #{author.last_name} was created successfully! 👍"
+  end
+
   def add_game
     label = add_label('Game')
     author = add_author
@@ -99,6 +99,27 @@ class App
     @labels << label
     @genres << genre
     @authors << author
+    puts "\n✅ The game '#{label.title}' by #{author.first_name} #{author.last_name} was created successfully! 👍"
+  end
+
+  def add_music_album
+    on_spotify = on_spotify?
+    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
+    published_date = gets.chomp
+    music = MusicAlbum.new(on_spotify, published_date)
+    label = add_label('Music Album')
+    genre = add_genre('Music Album')
+    musician = add_author
+    puts "\n Music Album created successfully \n \n"
+    label.add_item(music)
+    genre.add_item(music)
+    musician.add_item(music)
+
+    @music_albums << music
+    @labels << label
+    @genres << genre
+    @authors << musician
+    puts "\n✅ The music album '#{label.title}' by #{author.first_name} #{author.last_name} was created successfully! 👍"
   end
 
   def list_all_books
@@ -119,25 +140,6 @@ class App
 
   def list_all_authors
     Author.list_all(@authors)
-  end
-
-  def add_music_album
-    on_spotify = on_spotify?
-    print 'What\'s the publishing date? [year/month/day] (e.g 1937/11/12): '
-    published_date = gets.chomp
-    music = MusicAlbum.new(on_spotify, published_date)
-    label = add_label('Music Album')
-    genre = add_genre('Music Album')
-    musician = add_author
-    puts "\n \n Music Album created successfully \n \n"
-    @music_albums << music
-    @labels << label
-    @genres << genre
-    @authors << musician
-
-    label.add_item(music)
-    genre.add_item(music)
-    musician.add_item(music)
   end
 
   def list_all_genres
