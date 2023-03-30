@@ -38,5 +38,25 @@
     "publish_date": "2021/09/15",
     "last_played_at": "2022/11/16",
     "multiplayer": true
+  },
+  {
+    "id": "0e2c6f081fde8d",
+    "label": {
+      "title": "Fifa23",
+      "color": "Blue",
+      "id": "a50be6a4970cdc"
+    },
+    "author": {
+      "first_name": "Tim Button",
+      "last_name": "Jr",
+      "id": "7ac04deb188a08"
+    },
+    "genre": {
+      "name": "Soccer Video",
+      "id": "c650a7812b5525"
+    },
+    "publish_date": "2019/11/10",
+    "last_played_at": "2020/12/12",
+    "multiplayer": true
   }
 ]
